@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educación Diferenciada y Autismo en PR</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+    <!-- Custom Styles and Palette -->
+    <style>
+        /* Palette: "Future Education"
+           Primary Blue: #2d3436
+           Vibrant Teal: #00cec9
+           Energetic Blue: #0984e3
+           Accent Orange: #fdcb6e
+           Background: #f5f6fa
+        */
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f6fa;
+            color: #2d3436;
+        }
+
+        .gradient-header {
+            background: linear-gradient(135deg, #0984e3 0%, #00cec9 100%);
+        }
+
+        .card-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease;
+        }
+
+        .card-shadow:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Chart Container Styling - MANDATORY */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px; /* Base height */
+            max-height: 400px;
+        }
+
+        /* Specific max-widths for chart readability */
+        .chart-max-w-md { max-width: 500px; }
+        .chart-max-w-lg { max-width: 800px; }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+
+        /* Timeline Styling */
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #0984e3;
+            transform: translateX(-50%);
+        }
+        
+        /* Unicode Icons as replacements for SVG */
+        .icon-lg {
+            font-size: 3rem;
+            line-height: 1;
+        }
+    </style>
+    
+    <!-- 
+      NARRATIVE PLAN:
+      1. Hero: Title and Mission Statement.
+      2. Context: Why Differentiation matters for Autism (Data).
+      3. Legal: The laws in Puerto Rico (Cards).
+      4. Strategy: Differentiated Instruction vs. Traditional (Bar Chart).
+      5. Technology: AI Tools for Teachers (Bubble Chart).
+      6. Roadmap: Step-by-step guide to start (Timeline).
+      
+      VISUALIZATION CHOICES (NO SVG):
+      1. Donut Chart: Diversity of Learning Profiles (Goal: Inform/Compare).
+      2. Grouped Bar Chart: Impact of Strategies (Goal: Compare).
+      3. Bubble Chart: AI Tool Analysis (Goal: Relationships).
+      4. Styled HTML Cards: Legal Framework (Goal: Organize).
+      5. Styled HTML Timeline: Implementation Steps (Goal: Change/Process).
+    -->
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Header Section -->
+    <header class="gradient-header text-white py-16 px-4 mb-12">
+        <div class="max-w-6xl mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-black mb-4 tracking-tight">EDUCACIÓN DIFERENCIADA <br> EN PUERTO RICO</h1>
+            <p class="text-xl md:text-2xl font-light max-w-3xl mx-auto opacity-90">
+                Maximizando el potencial en el espectro autista mediante estrategias pedagógicas modernas, inteligencia artificial y cumplimiento legal.
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="max-w-6xl mx-auto px-4 grid grid-cols-1 gap-16 mb-20">
+
+        <!-- Section 1: Introduction & Student Diversity -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+                <div class="flex items-center mb-4">
+                    <span class="text-4xl mr-3 text-teal-500">◈</span>
+                    <h2 class="text-3xl font-bold text-gray-800">El Aula Diversa</h2>
+                </div>
+                <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                    En Puerto Rico, el aula moderna no es homogénea. Los estudiantes con autismo (TEA) presentan un perfil único de fortalezas y desafíos. La enseñanza tradicional ("talla única") a menudo deja rezagados a estos estudiantes.
+                </p>
+                <div class="bg-white p-6 rounded-lg border-l-4 border-teal-400 shadow-sm">
+                    <p class="font-bold text-gray-700">Objetivo:</p>
+                    <p class="text-gray-600">Identificar la variabilidad en los estilos de aprendizaje para aplicar la diferenciación efectiva.</p>
+                </div>
+            </div>
+            
+            <!-- Visualization: Donut Chart -->
+            <div class="bg-white p-6 rounded-xl card-shadow">
+                <h3 class="text-center font-bold text-gray-700 mb-4">Distribución Típica de Estilos de Aprendizaje en el Espectro</h3>
+                <div class="chart-container chart-max-w-md">
+                    <canvas id="diversityChart"></canvas>
+                </div>
+                <p class="text-center text-sm text-gray-500 mt-4">
+                    *Visualización representativa de la predominancia visual y kinestésica en estudiantes neurodivergentes.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 2: Legal Framework (Styled HTML - No Chart needed) -->
+        <section>
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Marco Legal en Puerto Rico</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Todo docente debe conocer las leyes que protegen el derecho a una educación adecuada y adaptada. Estas no son sugerencias, son mandatos para la equidad.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Ley 51 -->
+                <div class="bg-white p-8 rounded-xl card-shadow border-t-4 border-blue-500">
+                    <div class="icon-lg mb-4 text-blue-500">⚖️</div>
+                    <h3 class="text-xl font-bold mb-3">Ley 51-1996</h3>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Ley de Servicios Educativos Integrales para Personas con Impedimentos.
+                    </p>
+                    <ul class="text-sm text-gray-500 list-disc list-inside">
+                        <li>PEI (Plan Educativo Individualizado)</li>
+                        <li>Secretaría Auxiliar de Servicios</li>
+                    </ul>
+                </div>
+
+                <!-- IDEA -->
+                <div class="bg-white p-8 rounded-xl card-shadow border-t-4 border-teal-400">
+                    <div class="icon-lg mb-4 text-teal-400">🌎</div>
+                    <h3 class="text-xl font-bold mb-3">Ley IDEA</h3>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Individuals with Disabilities Education Act (Ley Federal).
+                    </p>
+                    <ul class="text-sm text-gray-500 list-disc list-inside">
+                        <li>Ambiente Menos Restrictivo (LRE)</li>
+                        <li>Garantía de Educación Pública Gratuita</li>
+                    </ul>
+                </div>
+
+                <!-- ADA -->
+                <div class="bg-white p-8 rounded-xl card-shadow border-t-4 border-orange-400">
+                    <div class="icon-lg mb-4 text-orange-400">♿</div>
+                    <h3 class="text-xl font-bold mb-3">Ley ADA</h3>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Americans with Disabilities Act (Protección Civil).
+                    </p>
+                    <ul class="text-sm text-gray-500 list-disc list-inside">
+                        <li>Acceso equitativo</li>
+                        <li>Eliminación de barreras arquitectónicas y curriculares</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Impact of Differentiation -->
+        <section class="bg-blue-50 p-8 rounded-2xl">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Impacto de la Enseñanza Diferenciada</h2>
+                <p class="text-gray-600">
+                    Al ajustar el Contenido, Proceso, Producto y Ambiente, los docentes pueden cerrar la brecha de rendimiento. Comparamos aquí métricas estimadas de aulas tradicionales vs. aulas diferenciadas.
+                </p>
+            </div>
+
+            <!-- Visualization: Grouped Bar Chart -->
+            <div class="bg-white p-6 rounded-xl shadow-sm">
+                <div class="chart-container chart-max-w-lg">
+                    <canvas id="impactChart"></canvas>
+                </div>
+                <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
+                    <div class="flex items-start">
+                        <span class="text-teal-500 font-bold mr-2">↗</span>
+                        <p>El "Engagement" (compromiso) aumenta significativamente cuando los materiales se adaptan a intereses específicos (hiperfocos en autismo).</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-teal-500 font-bold mr-2">↗</span>
+                        <p>La reducción de ansiedad es clave: un ambiente estructurado y predecible permite el aprendizaje cognitivo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: AI & Modern Strategies -->
+        <section>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-1">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">IA como Aliado Pedagógico</h2>
+                    <p class="text-gray-600 mb-6">
+                        La Inteligencia Artificial no reemplaza al docente; amplifica su capacidad para personalizar. Para estudiantes con autismo, la IA puede generar apoyos visuales instantáneos, simplificar textos complejos o crear escenarios sociales de práctica.
+                    </p>
+                    <div class="bg-gray-800 text-white p-6 rounded-lg">
+                        <h4 class="font-bold text-lg mb-2 text-teal-400">Herramientas Clave:</h4>
+                        <ul class="space-y-3">
+                            <li>🤖 <strong>Generativa:</strong> Crear historias sociales personalizadas.</li>
+                            <li>🗣️ <strong>Voz-a-Texto:</strong> Para estudiantes con dificultades motoras finas.</li>
+                            <li>📊 <strong>Analítica:</strong> Rastrear progreso en tiempo real.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Visualization: Bubble Chart -->
+                <div class="lg:col-span-2 bg-white p-6 rounded-xl card-shadow">
+                    <h3 class="text-center font-bold text-gray-700 mb-2">Matriz de Herramientas de IA: Impacto vs. Facilidad</h3>
+                    <div class="chart-container chart-max-w-lg">
+                        <canvas id="aiBubbleChart"></canvas>
+                    </div>
+                    <p class="text-center text-xs text-gray-400 mt-2">
+                        Tamaño de la burbuja = Versatilidad de la herramienta
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Research & Implementation Roadmap -->
+        <section class="mb-10">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Hoja de Ruta: Empezando la Investigación</h2>
+            
+            <div class="relative">
+                <!-- Vertical Line -->
+                <div class="timeline-line hidden md:block"></div>
+
+                <!-- Step 1 -->
+                <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 items-center">
+                    <div class="md:text-right order-1 md:order-1">
+                        <h3 class="text-2xl font-bold text-blue-600">Fase 1: Diagnóstico</h3>
+                        <p class="text-gray-600 mt-2">Evaluar el perfil sensorial y cognitivo de cada estudiante. No basarse solo en el diagnóstico clínico, sino en la observación diaria.</p>
+                    </div>
+                    <div class="hidden md:flex justify-center order-2">
+                        <div class="w-10 h-10 bg-teal-400 rounded-full flex items-center justify-center text-white font-bold shadow-lg">1</div>
+                    </div>
+                    <div class="md:hidden w-full bg-blue-50 p-4 rounded-lg order-3">
+                        <span class="font-bold text-blue-600">Paso 1:</span> Evaluación inicial del perfil del estudiante.
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 items-center">
+                    <div class="hidden md:flex justify-center order-1">
+                        <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold shadow-lg">2</div>
+                    </div>
+                    <div class="order-1 md:order-2">
+                        <h3 class="text-2xl font-bold text-teal-500">Fase 2: Diseño Universal (DUA)</h3>
+                        <p class="text-gray-600 mt-2">Integrar principios DUA en la planificación. Usar IA para generar múltiples formas de representación (texto, audio, video) del mismo contenido.</p>
+                    </div>
+                    <div class="md:hidden w-full bg-blue-50 p-4 rounded-lg order-3">
+                        <span class="font-bold text-teal-500">Paso 2:</span> Planificación con múltiples formatos (DUA).
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="md:text-right order-1 md:order-1">
+                        <h3 class="text-2xl font-bold text-orange-400">Fase 3: Monitoreo y Ajuste</h3>
+                        <p class="text-gray-600 mt-2">Utilizar la "Investigación en Acción". Documentar qué estrategias de IA o diferenciación funcionaron y ajustar semanalmente. Cumplimiento con Ley 51.</p>
+                    </div>
+                    <div class="hidden md:flex justify-center order-2">
+                        <div class="w-10 h-10 bg-orange-400 rounded-full flex items-center justify-center text-white font-bold shadow-lg">3</div>
+                    </div>
+                    <div class="md:hidden w-full bg-blue-50 p-4 rounded-lg order-3">
+                        <span class="font-bold text-orange-400">Paso 3:</span> Documentación y ajuste continuo.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h4 class="text-xl font-bold mb-4">Compromiso con la Educación Puertorriqueña</h4>
+            <p class="text-gray-400 max-w-2xl mx-auto mb-8">
+                La enseñanza diferenciada no es un lujo, es una herramienta esencial de justicia social para nuestros estudiantes con diversidad funcional.
+            </p>
+            <div class="text-sm text-gray-500">
+                <p>© 2023 Iniciativa de Docencia Inclusiva PR. Datos simulados con fines ilustrativos.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Charts -->
+    <script>
+        // --- UTILITY: Label Wrapping Logic (Mandatory) ---
+        function wrapLabel(label, maxChars = 16) {
+            if (label.length <= maxChars) return label;
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if ((currentLine + " " + words[i]).length <= maxChars) {
+                    currentLine += " " + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        // --- UTILITY: Tooltip Configuration (Mandatory) ---
+        const commonTooltipOptions = {
+            callbacks: {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    if (Array.isArray(label)) {
+                        return label.join(' ');
+                    } else {
+                        return label;
+                    }
+                }
+            }
+        };
+
+        // --- CHART 1: Diversity Donut Chart ---
+        const ctxDiversity = document.getElementById('diversityChart').getContext('2d');
+        const diversityLabels = ['Aprendizaje Visual', 'Aprendizaje Kinestésico', 'Aprendizaje Auditivo', 'Lectura/Escritura'];
+        const processedDiversityLabels = diversityLabels.map(l => wrapLabel(l));
+
+        new Chart(ctxDiversity, {
+            type: 'doughnut',
+            data: {
+                labels: processedDiversityLabels,
+                datasets: [{
+                    data: [45, 30, 10, 15], // Hypothetical data for ASD predominance
+                    backgroundColor: [
+                        '#00cec9', // Teal
+                        '#0984e3', // Blue
+                        '#fdcb6e', // Orange
+                        '#dfe6e9'  // Grey
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 10
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { padding: 20, usePointStyle: true }
+                    },
+                    tooltip: commonTooltipOptions,
+                    title: {
+                        display: true,
+                        text: 'Predominancia de Estilos (Estudiantes TEA)',
+                        padding: { bottom: 20 }
+                    }
+                }
+            }
+        });
+
+        // --- CHART 2: Impact Bar Chart ---
+        const ctxImpact = document.getElementById('impactChart').getContext('2d');
+        const impactLabels = ['Compromiso Académico', 'Comprensión Lectora', 'Reducción de Ansiedad', 'Participación Social'];
+        const processedImpactLabels = impactLabels.map(l => wrapLabel(l));
+
+        new Chart(ctxImpact, {
+            type: 'bar',
+            data: {
+                labels: processedImpactLabels,
+                datasets: [
+                    {
+                        label: 'Aula Tradicional',
+                        data: [40, 55, 30, 25],
+                        backgroundColor: '#b2bec3',
+                        borderRadius: 4
+                    },
+                    {
+                        label: 'Aula Diferenciada + IA',
+                        data: [85, 80, 75, 65],
+                        backgroundColor: '#0984e3',
+                        borderRadius: 4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: { display: true, text: 'Nivel de Efectividad (%)' }
+                    },
+                    x: {
+                        grid: { display: false }
+                    }
+                },
+                plugins: {
+                    tooltip: commonTooltipOptions,
+                    legend: { position: 'top' }
+                }
+            }
+        });
+
+        // --- CHART 3: AI Tools Bubble Chart ---
+        const ctxAI = document.getElementById('aiBubbleChart').getContext('2d');
+        
+        new Chart(ctxAI, {
+            type: 'bubble',
+            data: {
+                datasets: [
+                    {
+                        label: 'Generadores de Texto (ChatGPT/Claude)',
+                        data: [{ x: 8, y: 9, r: 15 }], // High ease, High impact
+                        backgroundColor: '#00cec9'
+                    },
+                    {
+                        label: 'Creadores Visuales (Canva/Midjourney)',
+                        data: [{ x: 7, y: 8, r: 12 }], 
+                        backgroundColor: '#fdcb6e'
+                    },
+                    {
+                        label: 'Lectores Inmersivos (TTS)',
+                        data: [{ x: 9, y: 7, r: 10 }], // Very easy, Good impact
+                        backgroundColor: '#0984e3'
+                    },
+                    {
+                        label: 'Sistemas de Tutoría Adaptativa',
+                        data: [{ x: 4, y: 9.5, r: 20 }], // Harder to setup, Massive impact
+                        backgroundColor: '#6c5ce7'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        title: { display: true, text: 'Facilidad de Uso (1-10)' },
+                        min: 0,
+                        max: 11
+                    },
+                    y: {
+                        title: { display: true, text: 'Impacto en Diferenciación (1-10)' },
+                        min: 0,
+                        max: 11
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label;
+                            }
+                        }
+                    },
+                    legend: {
+                        position: 'bottom',
+                        labels: { padding: 15 }
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
